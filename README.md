@@ -1,4 +1,4 @@
-````md
+````
 # Shiny Button Package 🌟
 
 A customizable Flutter package to create beautiful, animated buttons with a shiny effect. Perfect for adding a touch of elegance and interactivity to your Flutter apps.
@@ -23,6 +23,7 @@ dependencies:
   shiny_button:
     path: ../
 ```
+
 ````
 
 ## Usage 📖
@@ -178,3 +179,7 @@ Contributions are welcome! If you find any issues or have suggestions for new fe
 ## License 📄
 
 This project is licensed under the MIT License. See the LICENSE file for more details.
+
+```
+
+```
