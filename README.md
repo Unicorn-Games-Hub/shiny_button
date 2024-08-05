@@ -183,7 +183,7 @@ This project is licensed under the MIT License. See the LICENSE file for more de
 
 MIT License
 
-Copyright (c) 2024 Your Name
+Copyright (c) 2024 Unicorn Games LLC
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
