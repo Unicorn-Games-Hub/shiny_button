@@ -2,6 +2,8 @@
 
 A customizable Flutter package to create beautiful, animated buttons with a shiny effect. Perfect for adding a touch of elegance and interactivity to your Flutter apps.
 
+![shiny_button](https://github.com/user-attachments/assets/3e0db171-985a-4a52-bdd6-7e6bfb225c2a)
+
 ## Features 🎨
 
 - Customizable shiny animation
