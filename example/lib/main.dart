@@ -32,10 +32,10 @@ class MyHomePage extends StatelessWidget {
       ),
       body: Center(
         child: SingleChildScrollView(
+          padding: EdgeInsets.all(16.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              // ShinyButton with leading icon and left to right shine
               ShinyButton(
                 onPressed: () => launchURL('https://example.com'),
                 label: 'Subscribe and Play',
@@ -50,64 +50,15 @@ class MyHomePage extends StatelessWidget {
                 shineDirection: ShineDirection.leftToRight,
                 iconPosition: IconPosition.leading,
                 isReverse: false,
+                tooltip: 'This is a shiny button',
+                textStyle: TextStyle(fontWeight: FontWeight.bold),
+                borderRadius: 16.0,
+                elevation: 4.0,
+                shadowColor: Colors.black54,
+                customGradient: [Colors.red, Colors.yellow],
+                showRipple: true,
               ),
               SizedBox(height: 20),
-
-              // ShinyButton with trailing icon and right to left shine
-              ShinyButton(
-                onPressed: () => launchURL('https://example.com'),
-                label: 'Play and Subscribe',
-                icon: Icon(
-                  FontAwesomeIcons.play,
-                  color: Colors.white,
-                ),
-                backgroundColor: Colors.orange,
-                textColor: Colors.white,
-                isEnabled: true,
-                shineDuration: Duration(seconds: 2),
-                shineDirection: ShineDirection.rightToLeft,
-                iconPosition: IconPosition.trailing,
-                isReverse: false,
-              ),
-              SizedBox(height: 20),
-
-              // ShinyButton with leading icon and top to bottom shine
-              ShinyButton(
-                onPressed: () => launchURL('https://example.com'),
-                label: 'Join Us',
-                icon: Icon(
-                  FontAwesomeIcons.userPlus,
-                  color: Colors.white,
-                ),
-                backgroundColor: Colors.blue,
-                textColor: Colors.white,
-                isEnabled: true,
-                shineDuration: Duration(seconds: 3),
-                shineDirection: ShineDirection.topToBottom,
-                iconPosition: IconPosition.leading,
-                isReverse: false,
-              ),
-              SizedBox(height: 20),
-
-              // ShinyButton with trailing icon and bottom to top shine
-              ShinyButton(
-                onPressed: () => launchURL('https://example.com'),
-                label: 'Join and Play',
-                icon: Icon(
-                  FontAwesomeIcons.userPlus,
-                  color: Colors.white,
-                ),
-                backgroundColor: Colors.purple,
-                textColor: Colors.white,
-                isEnabled: true,
-                shineDuration: Duration(seconds: 3),
-                shineDirection: ShineDirection.bottomToTop,
-                iconPosition: IconPosition.trailing,
-                isReverse: false,
-              ),
-              SizedBox(height: 20),
-
-              // Disabled ShinyButton
               ShinyButton(
                 onPressed: () => launchURL('https://example.com'),
                 label: 'Disabled Button',
@@ -124,10 +75,9 @@ class MyHomePage extends StatelessWidget {
                 disabledBackgroundColor: Colors.grey,
                 disabledTextColor: Colors.white,
                 isReverse: true,
+                disableElevationWhenDisabled: true,
               ),
               SizedBox(height: 20),
-
-              // ShinyButton with no icon
               ShinyButton(
                 onPressed: () => launchURL('https://example.com'),
                 label: 'No Icon Button',
@@ -139,22 +89,59 @@ class MyHomePage extends StatelessWidget {
                 isReverse: false,
               ),
               SizedBox(height: 20),
-
-              // ShinyButton with reverse shine direction
               ShinyButton(
                 onPressed: () => launchURL('https://example.com'),
-                label: 'Reverse Shine',
-                icon: Icon(
-                  FontAwesomeIcons.arrowRight,
-                  color: Colors.white,
-                ),
-                backgroundColor: Colors.red,
+                label: 'Loading Button',
+                backgroundColor: Colors.orange,
                 textColor: Colors.white,
                 isEnabled: true,
                 shineDuration: Duration(seconds: 2),
                 shineDirection: ShineDirection.leftToRight,
-                iconPosition: IconPosition.leading,
-                isReverse: true,
+                isReverse: false,
+                isLoading: true,
+                loadingIndicatorSize: 24.0,
+              ),
+              SizedBox(height: 20),
+              ShinyButton(
+                onPressed: () => launchURL('https://example.com'),
+                label: 'Custom Text Style',
+                icon: Icon(
+                  FontAwesomeIcons.star,
+                  color: Colors.white,
+                ),
+                backgroundColor: Colors.purple,
+                textColor: Colors.white,
+                shineDuration: Duration(seconds: 2),
+                shineDirection: ShineDirection.rightToLeft,
+                iconPosition: IconPosition.above,
+                isReverse: false,
+                textStyle: TextStyle(fontSize: 18, fontStyle: FontStyle.italic),
+              ),
+              SizedBox(height: 20),
+              ShinyButton(
+                onPressed: () => launchURL('https://example.com'),
+                label: 'No Ripple Effect',
+                backgroundColor: Colors.teal,
+                textColor: Colors.white,
+                isEnabled: true,
+                shineDuration: Duration(seconds: 2),
+                shineDirection: ShineDirection.bottomToTop,
+                isReverse: false,
+                showRipple: false,
+              ),
+              SizedBox(height: 20),
+              ShinyButton(
+                onPressed: () => print('Long Pressed'),
+                onLongPress: () => print('Button Long Pressed'),
+                label: 'Long Press Button',
+                backgroundColor: Colors.cyan,
+                textColor: Colors.white,
+                isEnabled: true,
+                shineDuration: Duration(seconds: 2),
+                shineDirection: ShineDirection.leftToRight,
+                isReverse: false,
+                textStyle: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                padding: EdgeInsets.all(16.0),
               ),
             ],
           ),

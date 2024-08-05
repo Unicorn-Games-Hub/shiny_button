@@ -8,6 +8,7 @@ enum IconPosition { leading, trailing, above, below }
 
 class ShinyButton extends StatefulWidget {
   final VoidCallback onPressed;
+  final VoidCallback? onLongPress;
   final String label;
   final Icon? icon;
   final Color backgroundColor;
@@ -28,10 +29,13 @@ class ShinyButton extends StatefulWidget {
   final String? tooltip;
   final bool isLoading;
   final double loadingIndicatorSize;
+  final EdgeInsetsGeometry padding;
+  final bool disableElevationWhenDisabled;
 
   const ShinyButton({
     Key? key,
     required this.onPressed,
+    this.onLongPress,
     required this.label,
     this.icon,
     required this.backgroundColor,
@@ -52,6 +56,8 @@ class ShinyButton extends StatefulWidget {
     this.tooltip,
     this.isLoading = false,
     this.loadingIndicatorSize = 24.0,
+    this.padding = const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+    this.disableElevationWhenDisabled = true,
   }) : super(key: key);
 
   @override
@@ -129,10 +135,11 @@ class _ShinyButtonState extends State<ShinyButton>
           builder: (context, child) {
             return ShaderMask(
               shaderCallback: (Rect bounds) {
-                if (!widget.isEnabled || widget.isLoading)
+                if (!widget.isEnabled || widget.isLoading) {
                   return LinearGradient(
-                          colors: [Colors.transparent, Colors.transparent])
-                      .createShader(bounds);
+                    colors: [Colors.transparent, Colors.transparent],
+                  ).createShader(bounds);
+                }
 
                 return LinearGradient(
                   colors: widget.customGradient ??
@@ -154,11 +161,16 @@ class _ShinyButtonState extends State<ShinyButton>
                   ? BlendMode.srcATop
                   : BlendMode.dst,
               child: Material(
-                elevation: widget.elevation,
+                elevation: widget.isEnabled
+                    ? widget.elevation
+                    : widget.disableElevationWhenDisabled
+                        ? 0
+                        : widget.elevation,
                 shadowColor: widget.shadowColor,
                 borderRadius: BorderRadius.circular(widget.borderRadius),
                 child: InkWell(
                   onTap: widget.isEnabled ? widget.onPressed : null,
+                  onLongPress: widget.isEnabled ? widget.onLongPress : null,
                   splashColor: widget.showRipple
                       ? Colors.white.withOpacity(0.3)
                       : Colors.transparent,
@@ -169,8 +181,15 @@ class _ShinyButtonState extends State<ShinyButton>
                       color: widget.isEnabled
                           ? widget.backgroundColor
                           : widget.disabledBackgroundColor,
+                      gradient: widget.customGradient != null
+                          ? LinearGradient(
+                              colors: widget.customGradient!,
+                              begin: Alignment.topLeft,
+                              end: Alignment.bottomRight,
+                            )
+                          : null,
                     ),
-                    padding: EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+                    padding: widget.padding,
                     child: widget.isLoading
                         ? SizedBox(
                             width: widget.loadingIndicatorSize,
@@ -190,15 +209,52 @@ class _ShinyButtonState extends State<ShinyButton>
                                   padding: const EdgeInsets.only(right: 8.0),
                                   child: widget.icon,
                                 ),
-                              Text(
-                                widget.label,
-                                style: widget.textStyle ??
-                                    TextStyle(
-                                      color: widget.isEnabled
-                                          ? widget.textColor
-                                          : widget.disabledTextColor,
+                              if (widget.icon != null &&
+                                  widget.iconPosition == IconPosition.above)
+                                Column(
+                                  children: [
+                                    widget.icon!,
+                                    SizedBox(height: 4.0),
+                                    Text(
+                                      widget.label,
+                                      style: widget.textStyle ??
+                                          TextStyle(
+                                            color: widget.isEnabled
+                                                ? widget.textColor
+                                                : widget.disabledTextColor,
+                                          ),
                                     ),
-                              ),
+                                  ],
+                                ),
+                              if (widget.icon != null &&
+                                  widget.iconPosition == IconPosition.below)
+                                Column(
+                                  children: [
+                                    Text(
+                                      widget.label,
+                                      style: widget.textStyle ??
+                                          TextStyle(
+                                            color: widget.isEnabled
+                                                ? widget.textColor
+                                                : widget.disabledTextColor,
+                                          ),
+                                    ),
+                                    SizedBox(height: 4.0),
+                                    widget.icon!,
+                                  ],
+                                ),
+                              if (widget.icon == null ||
+                                  widget.iconPosition == IconPosition.leading ||
+                                  widget.iconPosition == IconPosition.trailing)
+                                Text(
+                                  widget.label,
+                                  style: widget.textStyle ??
+                                      TextStyle(
+                                        color: widget.isEnabled
+                                            ? widget.textColor
+                                            : widget.disabledTextColor,
+                                      ),
+                                ),
                               if (widget.icon != null &&
                                   widget.iconPosition == IconPosition.trailing)
                                 Padding(
