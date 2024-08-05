@@ -1,5 +1,3 @@
-Sure, here's the `README.md` content formatted correctly:
-
 ````md
 # Shiny Button Package 🌟
 
