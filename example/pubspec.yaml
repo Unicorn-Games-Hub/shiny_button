@@ -1,0 +1,21 @@
+name: shiny_button_example
+description: An example project to demonstrate the shiny_button package.
+
+publish_to: "none" # This prevents accidental publishing to pub.dev
+
+environment:
+  sdk: ">=2.12.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  shiny_button:
+    path: ../
+  font_awesome_flutter: ^10.7.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true

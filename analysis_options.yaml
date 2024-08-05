@@ -1,0 +1,7 @@
+include: package:pedantic/analysis_options.yaml
+
+analyzer:
+  errors:
+    # Customize lint rules and error reporting here.
+    # For example:
+    # public_member_api_docs: ignore

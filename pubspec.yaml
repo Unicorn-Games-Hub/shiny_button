@@ -1,0 +1,33 @@
+name: shiny_button
+description: A customizable Flutter package to create beautiful, animated buttons with a shiny effect.
+version: 0.1.0
+homepage: https://github.com/Unicorn-Games-Hub/shiny_button
+repository: https://github.com/Unicorn-Games-Hub/shiny_button
+issue_tracker: https://github.com/Unicorn-Games-Hub/shiny_button/issues
+
+environment:
+  sdk: ">=2.12.0 <3.0.0"
+  flutter: ">=1.20.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  font_awesome_flutter: ^9.1.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  pedantic: ^1.11.0
+
+flutter:
+  plugin:
+    platforms:
+      android:
+        package: com.example.shiny_button
+        pluginClass: ShinyButtonPlugin
+      ios:
+        pluginClass: ShinyButtonPlugin
+
+# Optional: This field adds additional information about the package.
+additional_policies:
+  - https://pub.dev/policies
