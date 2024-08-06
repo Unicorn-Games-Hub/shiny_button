@@ -22,6 +22,7 @@ class MyApp extends StatelessWidget {
 class MyHomePage extends StatelessWidget {
   void launchURL(String url) {
     // Implement your URL launching logic here
+    print('Launching $url');
   }
 
   @override
@@ -131,7 +132,7 @@ class MyHomePage extends StatelessWidget {
               ),
               SizedBox(height: 20),
               ShinyButton(
-                onPressed: () => print('Long Pressed'),
+                onPressed: () => print('Button Pressed'),
                 onLongPress: () => print('Button Long Pressed'),
                 label: 'Long Press Button',
                 backgroundColor: Colors.cyan,

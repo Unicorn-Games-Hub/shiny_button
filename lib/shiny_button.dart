@@ -1,5 +1,3 @@
-library shiny_button;
-
 import 'package:flutter/material.dart';
 
 enum ShineDirection { leftToRight, rightToLeft, topToBottom, bottomToTop }
@@ -148,11 +146,16 @@ class _ShinyButtonState extends State<ShinyButton>
                         Colors.white.withOpacity(0.3),
                         Colors.white.withOpacity(0.0),
                       ],
-                  stops: [
-                    (_controller.value - 0.3).clamp(0.0, 1.0),
-                    _controller.value.clamp(0.0, 1.0),
-                    (_controller.value + 0.3).clamp(0.0, 1.0),
-                  ],
+                  stops: widget.customGradient != null
+                      ? List.generate(
+                          widget.customGradient!.length,
+                          (index) =>
+                              index / (widget.customGradient!.length - 1))
+                      : [
+                          (_controller.value - 0.3).clamp(0.0, 1.0),
+                          _controller.value.clamp(0.0, 1.0),
+                          (_controller.value + 0.3).clamp(0.0, 1.0),
+                        ],
                   begin: getShineBegin(),
                   end: getShineEnd(),
                 ).createShader(bounds);
